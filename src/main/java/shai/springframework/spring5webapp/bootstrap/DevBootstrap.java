@@ -2,12 +2,14 @@ package shai.springframework.spring5webapp.bootstrap;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 import shai.springframework.spring5webapp.model.Author;
 import shai.springframework.spring5webapp.model.Book;
 import shai.springframework.spring5webapp.repositories.AuthorRepository;
 import shai.springframework.spring5webapp.repositories.BookRepository;
 
+@Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	
