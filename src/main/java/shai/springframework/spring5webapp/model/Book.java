@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Books {
+public class Book {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,16 +21,17 @@ public class Books {
 	private String publisher;
 	
 	@ManyToMany
+	@JoinTable(name="author_book", joinColumns=@JoinColumn(name="book_id"),inverseJoinColumns = @JoinColumn(name="author_id"))
 	private Set<Author> authors = new HashSet<>();
 
-	public Books(String title, String isbn, String publisher) {
+	public Book(String title, String isbn, String publisher) {
 		super();
 		this.title = title;
 		this.isbn = isbn;
 		this.publisher = publisher;
 	}
 
-	public Books(String title, String isbn, String publisher, Set<Author> authors) {
+	public Book(String title, String isbn, String publisher, Set<Author> authors) {
 		super();
 		this.title = title;
 		this.isbn = isbn;
@@ -84,7 +87,7 @@ public class Books {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Books other = (Books) obj;
+		Book other = (Book) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
